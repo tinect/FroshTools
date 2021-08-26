@@ -9,7 +9,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @RouteScope(scopes={"api"})
- * @Route(path="/api/_action/frosh-tools")
  */
 class ShopwareFilesController
 {
@@ -24,7 +23,7 @@ class ShopwareFilesController
     }
 
     /**
-     * @Route(path="/shopware-files", methods={"GET"}, name="api.frosh.tools.shopware-files")
+     * @Route(path="/api/v{version}/_action/frosh-tools/shopware-files", methods={"GET"}, name="api.frosh.tools.shopware-files")
      */
     public function listShopwareFiles(): JsonResponse
     {

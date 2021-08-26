@@ -20,7 +20,7 @@ class MysqlChecker implements CheckerInterface
 
     public function collect(HealthCollection $collection): void
     {
-        $version = $this->connection->fetchOne('SELECT VERSION()');
+        $version = $this->connection->fetchColumn('SELECT VERSION()');
         $extractedVersion = $this->extract($version);
 
         if (isset($extractedVersion['mariadb'])) {

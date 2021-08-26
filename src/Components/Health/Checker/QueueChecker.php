@@ -20,7 +20,7 @@ class QueueChecker implements CheckerInterface
 
     public function collect(HealthCollection $collection): void
     {
-        $oldestMessage = (int) $this->connection->fetchOne('SELECT IFNULL(MIN(published_at), 0) FROM enqueue');
+        $oldestMessage = (int) $this->connection->fetchColumn('SELECT IFNULL(MIN(published_at), 0) FROM enqueue');
 
         if ($oldestMessage === 0) {
             $collection->add(HealthResult::ok('frosh-tools.checker.queuesGood'));

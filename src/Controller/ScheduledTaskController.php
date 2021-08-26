@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @RouteScope(scopes={"api"})
- * @Route(path="/api/_action/frosh-tools")
  */
 class ScheduledTaskController
 {
@@ -32,7 +31,7 @@ class ScheduledTaskController
     }
 
     /**
-     * @Route(path="/scheduled-task/{id}", methods={"POST"}, name="api.frosh.tools.scheduled.task.run")
+     * @Route(path="/api/v{version}/_action/frosh-tools/scheduled-task/{id}", methods={"POST"}, name="api.frosh.tools.scheduled.task.run")
      */
     public function runTask(string $id, Context $context): JsonResponse
     {

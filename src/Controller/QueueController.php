@@ -9,7 +9,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @RouteScope(scopes={"api"})
- * @Route(path="/api/_action/frosh-tools")
  */
 class QueueController
 {
@@ -24,7 +23,7 @@ class QueueController
     }
 
     /**
-     * @Route(path="/queue", methods={"DELETE"}, name="api.frosh.tools.queue.clear")
+     * @Route(path="/api/v{version}/_action/frosh-tools/queue", methods={"DELETE"}, name="api.frosh.tools.queue.clear")
      */
     public function resetQueue(): JsonResponse
     {

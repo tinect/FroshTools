@@ -10,7 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @RouteScope(scopes={"api"})
- * @Route(path="/api/_action/frosh-tools")
  */
 class HealthController
 {
@@ -25,7 +24,7 @@ class HealthController
     }
 
     /**
-     * @Route(path="/health/status", methods={"GET"}, name="api.frosh.tools.health.status")
+     * @Route(path="/api/v{version}/_action/frosh-tools/health/status", methods={"GET"}, name="api.frosh.tools.health.status")
      */
     public function status(): JsonResponse
     {

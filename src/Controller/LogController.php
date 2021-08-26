@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @RouteScope(scopes={"api"})
- * @Route(path="/api/_action/frosh-tools")
  */
 class LogController
 {
@@ -29,7 +28,7 @@ class LogController
     }
 
     /**
-     * @Route(path="/logs/files", methods={"GET"}, name="api.frosh.tools.logs.files")
+     * @Route(path="/api/v{version}/_action/frosh-tools/logs/files", methods={"GET"}, name="api.frosh.tools.logs.files")
      */
     public function getLogFiles(): JsonResponse
     {
@@ -37,7 +36,7 @@ class LogController
     }
 
     /**
-     * @Route(path="/logs/file", methods={"GET"}, name="api.frosh.tools.logs.file-listing")
+     * @Route(path="/api/v{version}/_action/frosh-tools/logs/file", methods={"GET"}, name="api.frosh.tools.logs.file-listing")
      */
     public function getLog(Request $request): Response
     {

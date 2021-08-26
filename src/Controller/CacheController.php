@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @RouteScope(scopes={"api"})
- * @Route(path="/api/_action/frosh-tools")
  */
 class CacheController
 {
@@ -26,7 +25,7 @@ class CacheController
     }
 
     /**
-     * @Route(path="/cache", methods={"GET"}, name="api.frosh.tools.cache.get")
+     * @Route(path="/api/v{version}/_action/frosh-tools/cache", methods={"GET"}, name="api.frosh.tools.cache.get")
      */
     public function cacheStatistics(): JsonResponse
     {
@@ -71,9 +70,9 @@ class CacheController
     }
 
     /**
-     * @Route(path="/cache/{folder}", methods={"DELETE"}, name="api.frosh.tools.cache.clear")
+     * @Route(path="/api/v{version}/_action/frosh-tools/cache/{folder}", methods={"DELETE"}, name="api.frosh.tools.cache.delete")
      */
-    public function clearCache(string $folder): JsonResponse
+    public function deleteCache(string $folder): JsonResponse
     {
         if ($this->cacheRegistry->has($folder)) {
             $this->cacheRegistry->get($folder)->clear();
