@@ -60,13 +60,13 @@ class CacheController
             ];
         }
 
+        $this->calculateUsedPercentage($result);
+
         $activeColumns = array_column($result, 'active');
-        $freeSpaceColumns = array_column($result, 'freeSpace');
-        $sizeColumns = array_column($result, 'size');
+        $freeSpaceColumns = array_column($result, 'used');
 
         array_multisort($activeColumns, \SORT_DESC,
-            $freeSpaceColumns, \SORT_ASC,
-            $sizeColumns, \SORT_DESC,
+            $freeSpaceColumns, \SORT_DESC,
             $result);
 
         return new JsonResponse($result);
@@ -84,5 +84,19 @@ class CacheController
         }
 
         return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
+    }
+
+    private function calculateUsedPercentage(array &$result): void
+    {
+        foreach ($result as &$cacheItem) {
+            if ($cacheItem['freeSpace'] === null || $cacheItem['freeSpace'] <= 0 || $cacheItem['size'] < 0) {
+                $cacheItem['used'] = 100;
+                continue;
+            }
+
+            $cacheItem['used'] = 100 / $cacheItem['freeSpace'] * $cacheItem['size'];
+        }
+
+        unset($cacheItem);
     }
 }
